@@ -46,6 +46,8 @@ public class UWBSocketThread extends Thread {
 					JsonReader jsonReader = Json.createReader(new StringReader(data2));
 					JsonObject json = jsonReader.readObject();
 					jsonReader.close();
+
+
 					
 					
 					String aName = json.getString("anchor").toString().replaceAll("\"", "");

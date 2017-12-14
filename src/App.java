@@ -8,7 +8,7 @@ public class App{
    public static void main(String [] args) {
       SessionArranger s = new SessionArranger();
 	 
-      
+      System.out.println("prototype,, ,this is not a official buildt!");
       try {
          Thread t = new AndroidSocket(8379,s); // makes a listener for the android devices
          t.start();
