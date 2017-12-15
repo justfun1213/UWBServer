@@ -1,10 +1,7 @@
 
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.StringReader;
+import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
@@ -34,7 +31,6 @@ public class AndroidSocketThread extends Thread {
 			System.out.println("dataStreams could not be created");
 		}
 	}
-
 	public void run() {
 		try {
 			String input = in.readUTF();
@@ -54,12 +50,13 @@ public class AndroidSocketThread extends Thread {
 			
 			if(command.equalsIgnoreCase("getImage")) {
 				BufferedImage image = sessionA.getImage(json.get("name").toString().replaceAll("\"", ""));
+				ImageIO.setUseCache(false);
 				ImageIO.write(image, "PNG", out);
 				
 			} else if(command.equalsIgnoreCase("getCoordinates")) {
 				String roomName = json.get("name").toString().replaceAll("\"", "");
 				
-				 String toSend = sessionA.getLocation(roomName);
+				 String toSend = sessionA.getLocation();
 				 System.out.println("sending coordinates to client:" + toSend);
 				 out.writeUTF(toSend);
 				
@@ -78,6 +75,32 @@ public class AndroidSocketThread extends Thread {
 				
 				 System.out.println("logingreply: " + value.toString());
 				 out.writeUTF(value.toString());
+			}
+			else if(command.equalsIgnoreCase("getImageFast"))
+			{
+				FileInputStream fis = null;
+				BufferedInputStream bis = null;
+				try {
+
+					String path = "./OurMapForUWB/maps/room1.png";
+					File myFile = new File(path);
+					byte[] mybytearray = new byte[(int) myFile.length()];
+					fis = new FileInputStream(myFile);
+					bis = new BufferedInputStream(fis);
+					bis.read(mybytearray, 0, mybytearray.length);
+
+					System.out.println("Sending " + path + "(" + mybytearray.length + " bytes)");
+					out.write(mybytearray, 0, mybytearray.length);
+					out.flush();
+					System.out.println("Done.");
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				finally {
+					if (bis != null) bis.close();
+				}
 			}
 			
 			

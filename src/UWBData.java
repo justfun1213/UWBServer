@@ -1,4 +1,4 @@
-import java.awt.Point;
+/*import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -45,10 +45,6 @@ public class UWBData {
 		this.slave = slave;
 		this.name = roomName;
 
-
-
-
-
 		loadMap();
 
 		loadRooms(); // will also declare master- slave location and scale
@@ -56,8 +52,6 @@ public class UWBData {
 		//uTrang = new Utrangulation(300, 200, 900, 200, 40); // static values
 
 		isReady = true;
-
-
 
 	}
 
@@ -130,18 +124,18 @@ public class UWBData {
 	}
 
 	public String getCoordinates() {
-		int width = map.getWidth();
-		int height = map.getHeight();
-		if(hasPeoplesLocation == true){ //actual measured data
-			JsonBuilderFactory factory = Json.createBuilderFactory(null);
-			JsonObject value = factory.createObjectBuilder()
-					.add("masterName", "ABCDEF")
+				int width = map.getWidth();
+				int height = map.getHeight();
+				if(hasPeoplesLocation == true){ //actual measured data
+					JsonBuilderFactory factory = Json.createBuilderFactory(null);
+					JsonObject value = factory.createObjectBuilder()
+							.add("masterName", "ABCDEF")
 
-					.add("coordinates", factory.createArrayBuilder()
-							.add(factory.createObjectBuilder()
-									.add("name", "Tux")
-									.add("X", tempX)
-									.add("Y", tempY)))
+							.add("coordinates", factory.createArrayBuilder()
+									.add(factory.createObjectBuilder()
+											.add("name", "Tux")
+											.add("X", tempX)
+											.add("Y", tempY)))
 
 					.build();
 			System.out.println("WE GOT THE ACTUAL COORDINATES: " + value.toString());
@@ -152,7 +146,7 @@ public class UWBData {
 		else if(hasPeoplesLocation == false) { //static random data
 			JsonBuilderFactory factory = Json.createBuilderFactory(null);
 			JsonObject value = factory.createObjectBuilder()
-					.add("masterName", "ABCDEF")
+							.add("masterName", "ABCDEF")
 
 					.add("coordinates", factory.createArrayBuilder()
 							.add(factory.createObjectBuilder()
@@ -186,9 +180,6 @@ public class UWBData {
 		tempY = (int)uTrang.getUserLocationPoint1().getY();
 		System.out.println("I GOT UPDATED:::::::::::::::::::::::::::::: "+ distance +  "  "  + distance2 + "   " +tempX+ "  " + tempY);
 
-
-
-
 	}
 
 	public void getPointMaster() {
@@ -206,4 +197,4 @@ public class UWBData {
 		return isReady;
 	}
 
-}
+}*/

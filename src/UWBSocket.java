@@ -17,13 +17,8 @@ public class UWBSocket extends Thread {
 		} catch (Exception e) {
 			System.out.println("socket could not be set up!");
 		}
-	       
-		
-	      
+
 	   }
-
-
-	
 	public void run() {
 	      while(true) {
 	         try {
@@ -31,12 +26,6 @@ public class UWBSocket extends Thread {
 	            Socket client = serverSocket.accept();
 	            UWBSocketThread t = new UWBSocketThread(client, sessionA);
 	            t.start();
-	            
-	           
-	            
-	            
-	                     
-	          
 	            
 	         }catch(SocketTimeoutException s) {
 	            System.out.println("Socket timed out!");

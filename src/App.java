@@ -14,6 +14,8 @@ public class App{
          t.start();
          Thread i = new UWBSocket(8378,s); // makes a listener for the UWB modules devices
          i.start();
+         Thread configurationConenction = new ConfigurationSocket(8377,s);
+         configurationConenction.start();
          
          
          

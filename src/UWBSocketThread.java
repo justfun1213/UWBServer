@@ -41,15 +41,12 @@ public class UWBSocketThread extends Thread {
 					sleep(100);
 					String data2 = sc.nextLine();
 					System.out.println("received from uwb  " + data2);
-			
+					sessionA.triangulation.calculateFromJson(data2);
 
-					JsonReader jsonReader = Json.createReader(new StringReader(data2));
+					/*JsonReader jsonReader = Json.createReader(new StringReader(data2));
 					JsonObject json = jsonReader.readObject();
 					jsonReader.close();
 
-
-					
-					
 					String aName = json.getString("anchor").toString().replaceAll("\"", "");
 					String tName = json.getString("tag").toString().replaceAll("\"", "");
 					double distance = Double.parseDouble(json.getString("distance").toString().replaceAll("\"", ""));
@@ -58,14 +55,13 @@ public class UWBSocketThread extends Thread {
 					double distance2 = Double.parseDouble(json.getString("distance2").toString().replaceAll("\"", ""));
 					
 					String roomName = "room1";
-					
+
 					if(sessionA.doesRoomExist(roomName)) {
 						sessionA.updateUWBData(aName,tName,distance,aName2,tName2,distance2,roomName);
 					} else {
 						sessionA.addUWB(new UWBData(aName,aName2,roomName));   //ToDo: change the static room1
 						System.out.println("added a new room to the collection: " + aName + "  " + aName2 + "   "  + roomName); //ToDo: change static room1
-					}
-
+					}*/
 			
 				}	
 
